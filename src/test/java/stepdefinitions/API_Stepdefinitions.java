@@ -30,6 +30,7 @@ public class API_Stepdefinitions {
 
     @Given("The api user constructs the base url with the {string} token.")
     public void the_api_user_constructs_the_base_url_with_the_token(String userType) {
+
         HooksAPI.setUpApi(userType);
     }
 

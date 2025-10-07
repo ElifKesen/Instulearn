@@ -19,7 +19,7 @@ public class API_Methods {
 
         System.out.println(Arrays.toString(paths));  //  [api, categories]
 
-        StringBuilder tempPath = new StringBuilder("/{");  //    /{pp0}/{pp1}
+        StringBuilder tempPath = new StringBuilder("/{");  // "/{pp0}/{pp1}" daha sonra oluşturulacak URL path şablonunu hazırla
 
 
         for (int i = 0; i < paths.length; i++) {
@@ -35,11 +35,11 @@ public class API_Methods {
                 id = Integer.parseInt(value);
             }
         }
-        tempPath.deleteCharAt(tempPath.lastIndexOf("/"));
+        tempPath.deleteCharAt(tempPath.lastIndexOf("/"));// fazlaliklari siliyoruz
         tempPath.deleteCharAt(tempPath.lastIndexOf("{"));
 
         fullPath = tempPath.toString();
-        System.out.println("fullPath = " + fullPath);
+        System.out.println("fullPath = " + fullPath); // Örnek fullPath = /{pp0}/{pp1}
         System.out.println("id : " + id);
     }
 

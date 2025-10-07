@@ -19,7 +19,7 @@ Feature: As an administrator, I want to access course categories via an API conn
 
     Examples:
       | dataIndex | slug                    | icon                                                     | order| id | category_id | locale | title        |
-      | 1         | Cyber-Security | /store/1/default_images/categories_icons/sub_categories/globe.png | 45   | 56 | 613        | en     | Cyber Security|
+      | 1         | Testing | /store/1/default_images/categories_icons/sub_categories/zap.png| 45   | 57 | 614        | en     | Testing|
 
 
   Scenario: When a GET request is sent to the /api/categories endpoint with invalid (invalid token) authorization credentials,
