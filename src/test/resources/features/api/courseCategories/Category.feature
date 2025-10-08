@@ -1,5 +1,5 @@
 Feature: As an administrator, I want to access detailed information about the course category with the specified ID via an API connection.
-
+  @API
   Scenario Outline: When a GET request with valid authorization and correct id is sent to the /api/category/{id} endpoint,
   the response status code should be 200, the remark should be “success”, and the list data (id, slug, parent_id, icon,
   order, title, category_id, locale) in the response body should be validated.
@@ -77,10 +77,10 @@ Feature: As an administrator, I want to access detailed information about the co
     * The api user verifies that the "message" information in the response body is "Unauthenticated.".
     # Api kullanicisi response bodydeki message bilgisinin "Unauthenticated." oldugunu dogrular
 
-    #* The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+   # * The api user sends a "GET" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
     # Api kullanicisi GET request gonderir, donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
     Examples:
       | id  |
-      | 883 |
+      | 8831 |
 

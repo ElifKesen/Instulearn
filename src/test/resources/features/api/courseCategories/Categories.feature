@@ -1,5 +1,5 @@
 Feature: As an administrator, I want to access course categories via an API connection.
-  @API
+
   Scenario Outline: When a GET request is sent to the /api/categories endpoint with valid authorization,
   the response status code should be 200, the remark should be “success”, and the information of id(x)
   (slug, parent_id, icon, order, title, category_id, locale) should be validated.
@@ -38,6 +38,6 @@ Feature: As an administrator, I want to access course categories via an API conn
     # Api kullanicisi response bodydeki message bilgisinin "Unauthenticated." oldugunu dogrular
 
 
-    #* The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+    #* The api user sends a "GET" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
     # Api kullanicisi GET request gonderir, donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 

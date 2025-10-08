@@ -43,9 +43,9 @@ Feature: As an administrator, I want to create a new course category record via 
     # Api kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/addCategory" path parameters.
     # Api kullanicisi "api/addCategory" path parametrelerini olusturur
-    * The api user prepares a post request body to send to the api addCategory endpoint.
+    * The api user prepares a POST request to send to the API addCategory endpoint.
     # Api kullanicisi api addCategory endpointine gondermek icin bir post request body hazirlar
-    * The api user sends a POST request and saves the returned response.
+    * The api user sends a "POST" request and saves the returned response.
     # Api kullanicisi POST request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 401.
     # Api kullanicisi status codeun 401 oldugunu dogrular
@@ -69,5 +69,5 @@ Feature: As an administrator, I want to create a new course category record via 
 
     Examples:
       | id  |
-      | 886 |
+      | 941 |
 
