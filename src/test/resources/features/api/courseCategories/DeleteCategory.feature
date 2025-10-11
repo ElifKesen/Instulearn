@@ -1,12 +1,12 @@
 Feature: As an administrator, I want to delete the course category information with the specified ID via an API connection.
-
+  @API
   Scenario: Verify that a DELETE request to /api/deleteCategory/{id} with valid authorization and correct id returns
   status 200, status “success”, message “Successfully Deleted.”, and that the Deleted Category Id in the response
   matches the {id} path parameter.
 
     * The api user constructs the base url with the "admin" token.
     # Api kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/deleteCategory/963" path parameters.
+    * The api user sets "api/deleteCategory/964" path parameters.
     # Api kullanicisi "api/deleteCategory/id" path parametrelerini olusturur
     * The api user sends a DELETE request and saves the returned response.
     # Api kullanicisi DELETE request gonderir ve donen responsei kaydeder

@@ -52,7 +52,6 @@ Feature: As an administrator, I want to create a new course category record via 
     * The api user verifies that the "message" information in the response body is "Unauthenticated.".
     # Api kullanicisi response bodydeki message bilgisinin "Unauthenticated." oldugunu dogrular
 
-
   Scenario Outline: Verify that the newly created course category via API exists by sending a GET request to
   /api/category/{id} using the Added Category ID from the response.
 
@@ -69,5 +68,5 @@ Feature: As an administrator, I want to create a new course category record via 
 
     Examples:
       | id  |
-      | 941 |
+      | 964 |
 

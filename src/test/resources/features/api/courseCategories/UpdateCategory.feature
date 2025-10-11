@@ -6,7 +6,7 @@ Feature: As an administrator, I want to update the information of the course cat
 
     * The api user constructs the base url with the "admin" token.
     # Api kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/updateCategory/963" path parameters.
+    * The api user sets "api/updateCategory/964" path parameters.
     # Api kullanicisi "api/updateCategory/id" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the "<title>" information to send to the api updateCategory endpoint.
     # Api kullanicisi api updateCategory endpointine gondermek icin bir patch request body hazirlar
@@ -22,7 +22,7 @@ Feature: As an administrator, I want to update the information of the course cat
     # Api kullanıcısı response body icindeki "Updated Category Id" bilgisinin endpointde yazan id path parametresi ile ayni oldugunu dogrular.
     Examples:
       | title            |
-      | Education and Training |
+      | Education |
 
 
   Scenario: When a PATCH body containing an unregistered (id) with valid authorization information and the correct
