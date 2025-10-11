@@ -1,12 +1,12 @@
 Feature: As an administrator, I want to update the information of the course category with the specified ID via an API connection.
 
-  Scenario: Verify that a PATCH request to /api/updateCategory/{id} with valid authorization and correct data
+  Scenario Outline: Verify that a PATCH request to /api/updateCategory/{id} with valid authorization and correct data
   (title) returns status 200, remark “success”, message “Successfully Updated.”, and the Updated Category Id in the
   response matches the {id} path parameter.
 
     * The api user constructs the base url with the "admin" token.
     # Api kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/updateCategory/886" path parameters.
+    * The api user sets "api/updateCategory/963" path parameters.
     # Api kullanicisi "api/updateCategory/id" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the "<title>" information to send to the api updateCategory endpoint.
     # Api kullanicisi api updateCategory endpointine gondermek icin bir patch request body hazirlar
@@ -18,8 +18,11 @@ Feature: As an administrator, I want to update the information of the course cat
     # Api kullanicisi response bodydeki remark bilgisinin "success" oldugunu dogrular
     * The api user verifies that the "Message" information in the response body is "Successfully Updated.".
     # Api kullanicisi response bodydeki Message bilgisinin "Successfully Updated." oldugunu dogrular
-    * The api user verifies that the "Updated Category Id" information in the response body is the same as the id path parameter in the endpoint.
+    * The api user verifies that the "Updated Category Id" information in the returned response body is the same as the id path parameter written in the endpoint.
     # Api kullanıcısı response body icindeki "Updated Category Id" bilgisinin endpointde yazan id path parametresi ile ayni oldugunu dogrular.
+    Examples:
+      | title            |
+      | Education and Training |
 
 
   Scenario: When a PATCH body containing an unregistered (id) with valid authorization information and the correct
@@ -28,9 +31,9 @@ Feature: As an administrator, I want to update the information of the course cat
 
     * The api user constructs the base url with the "admin" token.
     # Api kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/updateCategory/12547" path parameters.
+    * The api user sets "api/updateCategory/8452" path parameters.
     # Api kullanicisi "api/updateCategory/id" path parametrelerini olusturur
-    * The api user prepares a POST request to send to the API addCategory endpoint.
+    * The api user prepares a PATCH request containing the "<title>" information to send to the api updateCategory endpoint.
     # Api kullanicisi api updateCategory endpointine gondermek icin bir patch request body hazirlar
     * The api user sends a "PATCH" request and saves the returned response.
     # Api kullanicisi PATCH request gonderir ve donen responsei kaydeder
@@ -50,9 +53,9 @@ Feature: As an administrator, I want to update the information of the course cat
     # Api kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/updateCategory" path parameters.
     # Api kullanicisi "api/updateCategory/id" path parametrelerini olusturur
-    * The api user prepares a patch request body to send to the api updateCategory endpoint.
+    * The api user prepares a PATCH request containing the "<title>" information to send to the api updateCategory endpoint.
     # Api kullanicisi api updateCategory endpointine gondermek icin bir patch request body hazirlar
-    * The api user sends a PATCH request and saves the returned response.
+    * The api user sends a "PATCH" request and saves the returned response.
     # Api kullanicisi PATCH request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 203.
     # Api kullanicisi status codeun 203 oldugunu dogrular
@@ -69,16 +72,16 @@ Feature: As an administrator, I want to update the information of the course cat
     # Api kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/updateCategory/886" path parameters.
     # Api kullanicisi "api/updateCategory/id" path parametrelerini olusturur
-    * The api user prepares a patch request body to send to the api updateCategory endpoint.
+    * The api user prepares a PATCH request containing the "<title>" information to send to the api updateCategory endpoint.
     # Api kullanicisi api updateCategory endpointine gondermek icin bir patch request body hazirlar
-    * The api user sends a PATCH request and saves the returned response.
+    * The api user sends a "PATCH" request and saves the returned response.
     # Api kullanicisi PATCH request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 401.
     # Api kullanicisi status codeun 401 oldugunu dogrular
     * The api user verifies that the "message" information in the response body is "Unauthenticated.".
     # Api kullanicisi response bodydeki message bilgisinin "Unauthenticated." oldugunu dogrular
 
-    * The api user sends a PATCH request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+    * The api user sends a "PATCH" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
     # Api kullanicisi PATCH request gonderir, donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
 
@@ -91,9 +94,9 @@ Feature: As an administrator, I want to update the information of the course cat
     # Api kullanicisi "api/category/<id>" path parametrelerini olusturur
     * The api user sends a GET request and saves the returned response.
     # Api kullanicisi GET request gonderir ve donen responsei kaydeder
-    * The api user verifies that the title information is "Education and Training"
+    * The api user verifies that the "data.translations[0].title" information in the response body is "Education and Training".
     # Api kullanıcısı title bilgisinin "Education and Training" olduğunu doğrular
 
     Examples:
       | id  |
-      | 886 |
+      | 963 |

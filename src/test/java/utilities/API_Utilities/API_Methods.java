@@ -1,18 +1,24 @@
 package utilities.API_Utilities;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.Assert;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static hooks.HooksAPI.spec;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 
 public class API_Methods {
     public static String fullPath;
     public static Response response;
     public static int id;
+
+    public static HashMap<String, Object> responseMap;
 
     public static void pathParam(String rawPaths) {  //    api/categories
         String[] paths = rawPaths.split("/");  //  [api, categories]
@@ -144,5 +150,17 @@ public class API_Methods {
         response.then()
                 .assertThat()
                 .body(path, equalTo(value));
+    }
+
+    public static void assertPathParam(String responseId) {
+        JsonPath jsonPath = response.jsonPath();
+
+        // Boşluk veya özel karakter varsa ['key'] şeklinde al
+        int updatedId = jsonPath.getInt("['" + responseId + "']");
+
+        System.out.println("Updated ID in response: " + updatedId);
+        System.out.println("Expected ID: " + id);
+
+        Assert.assertEquals("Response ID ile path param ID eşleşmiyor!", id, updatedId);
     }
 }

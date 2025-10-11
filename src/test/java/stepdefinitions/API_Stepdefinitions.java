@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import com.beust.ah.A;
 import config_Requirements.ConfigLoader;
 import hooks.HooksAPI;
 import io.cucumber.java.en.Given;
@@ -28,7 +29,7 @@ public class API_Stepdefinitions {
     JsonPath jsonPath;
 
     JSONObject jsonObjectBody=new JSONObject();
-    HashMap<String, Object> responseMap;
+    HashMap<String, Object> hashmapBody=new HashMap<>();
     TestData testdata=new TestData();
     String exceptionMesaj;
     ConfigLoader configLoader=new ConfigLoader();
@@ -130,13 +131,21 @@ public class API_Stepdefinitions {
 
     @Given("The api user sends a {string} request and saves the returned response.")
     public void the_api_user_sends_a_request_and_saves_the_returned_response(String httpMethod) {
-      response=given()
-              .spec(HooksAPI.spec)
-              .contentType(ContentType.JSON)
-              .when()
-              .body(jsonObjectBody.toString())
-              .post(API_Methods.fullPath);
-
+        if (httpMethod.equalsIgnoreCase("POST")) {
+            response = given()
+                    .spec(HooksAPI.spec)
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .body(jsonObjectBody.toString())
+                    .post(API_Methods.fullPath);
+        }else {
+            response = given()
+                    .spec(HooksAPI.spec)
+                    .contentType(ContentType.JSON)
+                    .body(hashmapBody)
+                    .when()
+                    .patch(API_Methods.fullPath);
+        }
 
       response.prettyPrint();
     }
@@ -204,6 +213,36 @@ public class API_Stepdefinitions {
         jsonObjectBody = requestBody;
     }
 
+    // *************************************** /api/updateCategory/{id} *******************************************
+    @Given("The api user prepares a PATCH request containing the {string} information to send to the api updateCategory endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_information_to_send_to_the_api_update_category_endpoint(String title) {
 
+       hashmapBody = testdata.updateCategoryRequestBody();
+        System.out.println("Patch Body: "+hashmapBody);
+    }
+
+    @Given("The api user verifies that the {string} information in the returned response body is the same as the id path parameter written in the endpoint.")
+    public void the_api_user_verifies_that_the_information_in_the_returned_response_body_is_the_same_as_the_id_path_parameter_written_in_the_endpoint(String reponseId) {
+        hashmapBody=response.as(HashMap.class); //response i map e cevirdik
+       int keyData =(int)hashmapBody.get(reponseId); //int e cevirmek zorundayiz cünkü gelen object, ama id int
+       Assert.assertEquals(keyData, API_Methods.id);
+    }
+    // *************************************** /api/deleteCategory *******************************************
+    @Given("The api user sends a DELETE request and saves the returned response.")
+    public void the_api_user_sends_a_delete_request_and_saves_the_returned_response() {
+        response = given()
+                .spec(HooksAPI.spec)
+                .when()
+                .delete(API_Methods.fullPath);
+
+        response.prettyPrint();
+    }
+    @Given("The api user verifies that the {string} in the response body is the same as the id path parameter in the endpoint.")
+    public void the_api_user_verifies_that_the_in_the_response_body_is_the_same_as_the_id_path_parameter_in_the_endpoint(String key) {
+        hashmapBody=response.as(HashMap.class);
+        String dataKey=(String) hashmapBody.get(key);
+        String endpointKey=String.valueOf(API_Methods.id);
+        Assert.assertEquals(dataKey,endpointKey);
+    }
 
 }
